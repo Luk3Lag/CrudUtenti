@@ -7,6 +7,7 @@ public class step1 {
         ArrayList<utente> utenti = new ArrayList<>();
         String risposta;
 
+
         do {
             System.out.println("Inserisci il nome utente:");
             String username = scanner.nextLine();
@@ -28,7 +29,10 @@ public class step1 {
             }
 
             System.out.println("Vuoi continuare? (si/no)");
+            System.out.println(" ciao ");
             risposta = scanner.nextLine();
+            scanner.close();
         } while (risposta.equals("si"));
     }
+    
 }

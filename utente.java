@@ -6,6 +6,7 @@ public class utente {
         this.utente=utente;
         this.password=password;
     }
+
     
     public String getUtente() {
         return utente;
@@ -18,5 +19,9 @@ public class utente {
     }
       public void setPassword(String password) {
         this.password = password;
+    }
+    @Override
+    public String toString() {
+        return " ";
     }
 }
