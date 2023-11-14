@@ -1,10 +1,10 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class step1 {
+public class Step1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<utente> utenti = new ArrayList<>();
+        HashMap<String,String> utenti=new HashMap<>();
         String risposta;
 
 
@@ -15,16 +15,15 @@ public class step1 {
             String password = scanner.nextLine();
 
             boolean utenteEsistente = false;
-            for (utente utente : utenti) {
-                if (utente.getUtente().equals(username)) {
+            
+                if (utenti.containsKey(username)) {
                     System.out.println("Errore l' utente  esiste già!");
                     utenteEsistente = true;
                     break;
-                }
             }
 
             if (!utenteEsistente) {
-                utenti.add(new utente(username, password));
+                utenti.put(username, password);
                 System.out.println("Utente aggiunto con successo!");
             }
 
