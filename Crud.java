@@ -1,14 +1,16 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Crud {
     private Utente currentUtente;
-    private List<Utente> utenti = new ArrayList<>();
+    private Map<Integer, Utente> utenti = new HashMap<>();
     private Crud instance;
+    private int id = 0;
     
     private Crud(Utente utente){
         this.currentUtente = utente;
-        this.utenti.add(utente);
+        this.utenti.put(id, utente);
+        this.id++;
     }
 
     public Crud getIstance(){
@@ -20,18 +22,19 @@ public class Crud {
     }
 
     public void createUtente(Utente utente){
-        this.utenti.add(utente);
+        this.utenti.put(id, utente);;
+        this.id++;
     }
 
     public Utente readCurrentUtente(){
         return this.currentUtente;
     }
-    public List<Utente> readUtenti(){
+    public Map<Integer, Utente> readUtenti(){
         return this.utenti;
     }
 
     public void updateUtente(String username, String password){
-        for(Utente u : this.utenti){
+        for(Utente u : this.utenti.values()){
             if(u.getUtente().equals(username)){
                 u.setPassword(password);
             }
@@ -39,6 +42,6 @@ public class Crud {
     }
 
     public void deleteUtente(Utente utente){
-        this.utenti.remove(utente);
+        if(utente!=null) utenti.remove((Object) utente);
     }
 }
