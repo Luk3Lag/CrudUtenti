@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Login{
     Utente utente;
     boolean accessoEseguito=false;
@@ -36,7 +37,22 @@ public class Login{
     }
 
     public void logout(){
+        System.out.println("Sicuro di voler uscire dalla sessione?");
+        boolean scelta= false;
+        while(!scelta){
+        System.out.println("1. Si");
+        System.out.println("2. No");
+
+        int uscire=scanner.nextInt();
+        if (uscire==1){
         loggato=false; 
+        scelta=true;
+        }
+
+        else {
+            System.out.println("Scelta inserita non valida. Riprova.");
+        }
+    }
     }
 
 
