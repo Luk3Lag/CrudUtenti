@@ -26,11 +26,13 @@ public class Crud {
         this.id++;
     }
 
-    public Utente readCurrentUtente(){
-        return this.currentUtente;
+    public void readCurrentUtente(){
+        System.out.println(this.currentUtente);
     }
-    public Map<Integer, Utente> readUtenti(){
-        return this.utenti;
+    public void readUtenti(){
+        for(Integer i : this.utenti.keySet()){
+            System.out.println(this.utenti.get(i));
+        }
     }
 
     public void updateUtente(String username, String password){
