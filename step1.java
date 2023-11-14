@@ -18,7 +18,7 @@ public class Step1 {
             
                 if (utenti.containsKey(username)) {
                     System.out.println("Errore l' utente  esiste già!");
-                    utenteEsistente = true;
+                utenteEsistente = true;
                     break;
             }
 
@@ -28,7 +28,6 @@ public class Step1 {
             }
 
             System.out.println("Vuoi continuare? (si/no)");
-            System.out.println(" ciao ");
             risposta = scanner.nextLine();
             scanner.close();
         } while (risposta.equals("si"));
