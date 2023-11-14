@@ -21,6 +21,7 @@ public class Step1 {
                 if (utenti.containsKey(username)) {
                     System.out.println("Errore l' utente  esiste già!");
                 utenteEsistente = true;
+                
             }
 
             if (!utenteEsistente) {
