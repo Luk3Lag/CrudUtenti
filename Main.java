@@ -20,36 +20,29 @@ public class Main{
                 return;
         }
 
-        Crud crud = Crud.getInstance(utente);
+        boolean esci = false;
 
-        utente.changePassword();
+        while(!esci){
+            Crud crud = Crud.getInstance(utente);
 
-        System.out.println("Utente singolo");
-        crud.readCurrentUtente();
-        System.out.println("\nLista utenti");
-        crud.readUtenti();
+            System.out.println("1. Cambia Password\n2. Logout");
 
-        crud.updateUtente(0, "pippo", "pluto");
-
-        System.out.println("Utente singolo");
-        crud.readCurrentUtente();
-        System.out.println("\nLista utenti");
-        crud.readUtenti();
-
-        crud.deleteUtente(utente);
-
-        System.out.println("Utente singolo");
-        crud.readCurrentUtente();
-        System.out.println("\nLista utenti");
-        crud.readUtenti();
-        
-        System.out.println("Logout? (s/n)");
-        scan.nextLine();
-        char scelta = scan.nextLine().charAt(0);
-        if(scelta=='s'){
-            if(login.logout()){
-                System.out.println("Logout eseguito correttamente!");
-                return;
+            choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    utente.changePassword();
+                    break;
+                case 2:
+                    System.out.println("Logout? (s/n)");
+                    scan.nextLine();
+                    char scelta = scan.nextLine().charAt(0);
+                    if(scelta=='s'){
+                        if(login.logout()){
+                            System.out.println("Logout eseguito correttamente!");
+                            esci = true;
+                        }
+                    }
+                    break;
             }
         }
     }

@@ -43,6 +43,6 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "Utente{" + "username=" + username + "}";
+        return "Utente{" + "username=" + username + "" + ", password=" + password +"}";
     }
 }
