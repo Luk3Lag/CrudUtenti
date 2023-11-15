@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -17,6 +16,7 @@ public class Login{
     int nextId=0;
 
     public Utente registrazione(){
+      readFile();
       Scanner scanner = new Scanner(System.in);
       System.out.println("Inserire l'username");
       String username= scanner.nextLine();
@@ -38,6 +38,7 @@ public class Login{
     }
 
     public Utente login(){
+      readFile();
       Scanner scanner = new Scanner(System.in);
       while (tentativi<3 && accessoEseguito==false){
         System.out.println("Inserire l'username");
@@ -98,17 +99,6 @@ public class Login{
           Utente u = new Utente(utente[0], utente[1]);
           utenti.put(nextId, u);
           nextId++;
-        }
-      } catch (IOException e) {
-        System.out.println("Errore nella lettura del file");
-      }
-    }
-
-    public void writeFile(){
-      try (FileWriter fw = new FileWriter("utenti.txt"); BufferedWriter bw = new BufferedWriter(fw)) {
-        for (Utente u : utenti.values()) {
-          bw.write(u.toString());
-          bw.newLine();
         }
       } catch (IOException e) {
         System.out.println("Errore nella lettura del file");

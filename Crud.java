@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +42,7 @@ public class Crud {
         }
         this.utenti.put(id, utente);;
         this.id++;
+        writeFile();
     }
 
     public void readCurrentUtente(){
@@ -56,6 +60,7 @@ public class Crud {
             utente.setUsername(username);
             utente.setPassword(password);
             this.utenti.put(i, utente);
+            writeFile();
         }
     }
 
@@ -64,8 +69,20 @@ public class Crud {
             for(Integer i : this.utenti.keySet()){
                 if(this.utenti.get(i).getUsername().equals(utente.getUsername())){
                     this.utenti.remove(i);
+                    writeFile();
                 }
             }
         }
+    }
+
+    public void writeFile(){
+      try (FileWriter fw = new FileWriter("utenti.txt"); BufferedWriter bw = new BufferedWriter(fw)) {
+        for (Utente u : utenti.values()) {
+          bw.write(u.toString());
+          bw.newLine();
+        }
+      } catch (IOException e) {
+        System.out.println("Errore nella lettura del file");
+      }
     }
 }
