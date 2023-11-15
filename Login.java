@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -82,5 +88,30 @@ public class Login{
       }
 
       return false;
+    }
+
+    public void readFile(){
+      try (FileReader fr = new FileReader("utenti.txt"); BufferedReader br = new BufferedReader(fr)) {
+        String line;
+        while ((line = br.readLine()) != null) {
+          String[] utente = line.split(",");
+          Utente u = new Utente(utente[0], utente[1]);
+          utenti.put(nextId, u);
+          nextId++;
+        }
+      } catch (IOException e) {
+        System.out.println("Errore nella lettura del file");
+      }
+    }
+
+    public void writeFile(){
+      try (FileWriter fw = new FileWriter("utenti.txt"); BufferedWriter bw = new BufferedWriter(fw)) {
+        for (Utente u : utenti.values()) {
+          bw.write(u.toString());
+          bw.newLine();
+        }
+      } catch (IOException e) {
+        System.out.println("Errore nella lettura del file");
+      }
     }
 }
