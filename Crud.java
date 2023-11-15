@@ -4,7 +4,7 @@ import java.util.Map;
 public class Crud {
     private Utente currentUtente;
     private Map<Integer, Utente> utenti = new HashMap<>();
-    private Crud instance;
+    private static Crud instance;
     private int id = 0;
     
     private Crud(Utente utente){
@@ -13,8 +13,11 @@ public class Crud {
         this.id++;
     }
 
-    public Crud getIstance(){
-        return this.instance;
+    public static Crud getInstance(Utente utente){
+        if(instance==null){
+            instance = new Crud(utente);
+        }
+        return instance;
     }
 
     public Utente getUtente(){
@@ -22,6 +25,14 @@ public class Crud {
     }
 
     public void createUtente(Utente utente){
+        if(utenti.size()>0){
+            for(Utente u : this.utenti.values()){
+                if(u.getUsername().equals(utente.getUsername())){
+                    System.out.println("Utente già creato!");
+                    return;
+                }
+            }
+        }
         this.utenti.put(id, utente);;
         this.id++;
     }
@@ -35,15 +46,22 @@ public class Crud {
         }
     }
 
-    public void updateUtente(String username, String password){
-        for(Utente u : this.utenti.values()){
-            if(u.getUtente().equals(username)){
-                u.setPassword(password);
-            }
+    public void updateUtente(int i, String username, String password){
+        if(this.utenti.containsKey(i)){
+            Utente utente = this.utenti.get(i);
+            utente.setUsername(username);
+            utente.setPassword(password);
+            this.utenti.put(i, utente);
         }
     }
 
     public void deleteUtente(Utente utente){
-        if(utente!=null) utenti.remove((Object) utente);
+        if(utente!=null){
+            for(Integer i : this.utenti.keySet()){
+                if(this.utenti.get(i).getUsername().equals(utente.getUsername())){
+                    this.utenti.remove(i);
+                }
+            }
+        }
     }
 }
