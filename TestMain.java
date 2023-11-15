@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class TestMain{
@@ -21,6 +22,27 @@ public class TestMain{
         }
 
         Crud crud = Crud.getInstance(utente);
+
+        System.out.println("1. Aggiungi utente\n2. Leggi utenti\n3. Modifica password\n4. Elimina utente");
+        choice = scan.nextInt();
+        switch(choice){
+            case 1:
+                crud.createUtente(utente);
+                break;
+            case 2:
+                crud.readUtenti();
+                break;
+            case 3:
+                System.out.print("Inserisci la password: ");
+                String password = scan.nextLine();
+                if(password.equals(utente.getPassword())){
+                    System.out.print("Inserisci la nuova password: ");
+                    String newPassword = scan.nextLine();
+                    Map<Integer, Utente> utenti = crud.getUtenti();
+                    crud.updateUtente(0, utente.getUsername(), newPassword);
+                }
+                break;
+        }
 
         utente.changePassword();
 

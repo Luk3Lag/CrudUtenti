@@ -24,6 +24,10 @@ public class Crud {
         return this.currentUtente;
     }
 
+    public Map<Integer, Utente> getUtenti(){
+        return this.utenti;
+    }
+
     public void createUtente(Utente utente){
         if(utenti.size()>0){
             for(Utente u : this.utenti.values()){
