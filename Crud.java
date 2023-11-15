@@ -12,7 +12,7 @@ public class Crud {
     
     private Crud(Utente utente){
         this.currentUtente = utente;
-        this.utenti.put(id, utente);
+        createUtente(utente);
         this.id++;
     }
 
@@ -42,7 +42,7 @@ public class Crud {
         }
         this.utenti.put(id, utente);;
         this.id++;
-        writeFile();
+        writeFile(true);
     }
 
     public void readCurrentUtente(){
@@ -60,7 +60,7 @@ public class Crud {
             utente.setUsername(username);
             utente.setPassword(password);
             this.utenti.put(i, utente);
-            writeFile();
+            writeFile(false);
         }
     }
 
@@ -69,14 +69,14 @@ public class Crud {
             for(Integer i : this.utenti.keySet()){
                 if(this.utenti.get(i).getUsername().equals(utente.getUsername())){
                     this.utenti.remove(i);
-                    writeFile();
+                    writeFile(false);
                 }
             }
         }
     }
 
-    public void writeFile(){
-      try (FileWriter fw = new FileWriter("utenti.txt"); BufferedWriter bw = new BufferedWriter(fw)) {
+    public void writeFile(boolean append){
+      try (FileWriter fw = new FileWriter("utenti.txt", append); BufferedWriter bw = new BufferedWriter(fw)) {
         for (Utente u : utenti.values()) {
           bw.write(u.toString());
           bw.newLine();

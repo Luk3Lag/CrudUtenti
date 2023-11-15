@@ -1,0 +1,2 @@
+Utente{username=Freddie, password=Pass}
+Utente{username=Luca, password=Pass}

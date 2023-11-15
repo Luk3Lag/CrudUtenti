@@ -12,6 +12,12 @@ public class TestMain{
         switch (choice) {
             case 1:
                 utente = login.registrazione();
+                if(utente==null){
+                    System.out.println("Login");
+                    utente = login.login();
+                }else{
+                    System.out.println("Registrazione eseguita con successo!");
+                }
                 break;
             case 2:
                 utente = login.login();
