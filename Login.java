@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Login{
-    List<Utente> utenti = new ArrayList<>();
+    Map<Integer, Utente> utenti = new HashMap<>();
     Utente utente;
     boolean accessoEseguito=false;
     int tentativi=0;
     boolean loggato= false;
+    int nextId=0;
 
     public Utente registrazione(){
       Scanner scanner = new Scanner(System.in);
@@ -17,14 +20,15 @@ public class Login{
       String password= scanner.nextLine();
       Utente utente = new Utente(username, password);
       if(utenti.size()>0){
-        for(Utente u : utenti){
+        for(Utente u : utenti.values()){
           if(u.getUsername().equals(utente.getUsername())){
             System.out.println("Errore l' utente  esiste già!");
             return null;
           }
         }
       }
-      utenti.add(utente);
+      utenti.put(nextId, utente);
+      nextId++;
       System.out.println("Utente aggiunto con successo!");
       return utente;
     }
@@ -38,7 +42,7 @@ public class Login{
         String password= scanner.nextLine();
         tentativi++;
         if(utenti.size()>0){
-          for (Utente u : utenti){
+          for (Utente u : utenti.values()){
             if (username.equals(u.getUsername()) && password.equals(u.getPassword())){
                 System.out.println("Accesso eseguito correttamente!");
                 accessoEseguito=true;
