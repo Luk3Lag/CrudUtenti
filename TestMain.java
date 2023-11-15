@@ -24,7 +24,7 @@ public class TestMain{
         Crud crud = Crud.getInstance(utente);
 
         do{
-            System.out.println("1. Aggiungi utente\n2. Leggi utenti\n3. Modifica password\n4. Elimina utente\n5. Logout");
+            System.out.println("1. Aggiungi utente corrente\n2. Leggi utenti\n3. Modifica password\n4. Elimina utente\n5. Logout");
             choice = scan.nextInt();
             switch(choice){
                 case 1:
@@ -35,6 +35,7 @@ public class TestMain{
                     break;
                 case 3:
                     System.out.print("Inserisci la password: ");
+                    scan.nextLine();
                     String password = scan.nextLine();
                     if(password.equals(utente.getPassword())){
                         System.out.print("Inserisci la nuova password: ");
@@ -43,8 +44,11 @@ public class TestMain{
                         for(Utente u : utenti.values()){
                             if(u.getUsername().equals(utente.getUsername())){
                                 u.setPassword(newPassword);
+                                System.out.println("Password cambiata con successo!");
                             }
                         }
+                    }else{
+                        System.out.println("Password errata!");
                     }
                     break;
                 case 4:
